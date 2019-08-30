@@ -1,0 +1,17 @@
+[
+{"name": "General", 
+  "parameters": ["data.file", "output.filename", "root", "percentile_dist", "preference", "color_by", "subway_factor", "factor_num_win", "factor_min_win", "factor_width" ]},
+
+{"name": "Cell Plots",
+  "parameters": ["flag_cells", "flag_log_view", "factor_zoomin"] },
+
+{"name":"Gene Plots", "parameters":["flag_genes", "genes"]},
+
+
+
+{"name": "Plotting", "hidden": false,
+  "parameters": ["figure.width", "figure.height", "figure.legend.num.columns"]}
+
+]
+
+
