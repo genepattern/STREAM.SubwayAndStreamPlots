@@ -1,0 +1,24 @@
+#
+# ant -f ${GPUNIT_HOME}/build.xml -Dgpunit.diffStripTrailingCR="--strip-trailing-cr" -Dgp.host="beta.genepattern.org" -Dgp.url="https://beta.genepattern.org" -Dgp.user="ted-dev" -Dgp.password="" -Dgpunit.testfolder=`pwd` gpunit
+#
+name: STREAM.VisualizeTrajectories
+module: STREAM.VisualizeTrajectories
+params: 
+    "data.file": "./data/stream_epg_result.pkl" 
+    "output.filename": "test"
+    "root": "S1"
+    "preference": "S3,S4"
+    "genes": "Car2,Gata1,Epx"
+assertions:
+    jobStatus: success
+    files:
+        "test_stream_result.pkl":  !!null
+        "S1/stream_plot_car2.png": !!null
+        "S1/stream_plot_epx.png": !!null
+        "S1/stream_plot_gata1.png": !!null
+        "S1/subway_map_car2.png": !!null
+        "S1/subway_map_epx.png": !!null
+        "S1/subway_map_gata1.png": !!null
+        "test_flat_tree.png": !!null
+        "S1/test_cell_stream_plot.png": !!null
+        "S1/test_cell_subway_map.png": !!null
