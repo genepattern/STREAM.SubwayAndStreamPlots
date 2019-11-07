@@ -46,22 +46,24 @@
 
 <p>STREAM (Single-cell Trajectories Reconstruction, Exploration And Mapping) is an interactive pipeline capable of disentangling and visualizing complex branching trajectories from both single-cell transcriptomic and epigenomic data.  Within GenePattern STREAM is implemented as a collection of modules that cover the entire STREAM processing pipeline to allow individual steps to be performed interactively for data exploration.</p>
 
-<p>STREAM.VisualizeTrajectories is used to generate the subway and stream plots for a computed graph structure. </p>
-
-<p><h5>Huidong to add detail explaining this part of the STREAM pipeline</h5></p>
-
-<p>&nbsp;</p>
+<p>STREAM.VisualizeTrajectories is used to generate the flat tree subway and stream plots that intuitively represent trajectories as linear segments for a computed graph structure. </p>
 
 <h2>Algorithm</h2>
 <p>
-<h5>Huidong to cover details of this portion of the analysis</h5>
+The tree structure learned in the 3D space (or higher dimensional space), is first approximated by linear segments (each representing a branch) and mapped to a 2D plane based on a modified version of the force-directed layout Fruchterman-Reingold algorithm. We adjust each edge length in order to preserve the lengths of the branches of the original tree. Finally, using both the pseudotime location on the assigned branch and the distance from it in the MLLE space, we map cells to the obtained tree in the 2D plane. Cells are represented as dots and randomly placed to either side of the assigned branches. Each node in the tree indicates one cell state (cell states are sequentially named S0, S1, ... starting from a randomly selected node) and the resulting structure is called **flat tree plot**.
+</p><p>
+Starting from the flat tree plot and with a designated root or start node, breadth-first search is used to order and arrange nodes and edges horizontally on a 2D plane. Because we preserve the branch lengths of the original tree, the x-axis represents the distance (namely pseudotime) from the start node along the different branches. Cells are then mapped to the obtained structure, and the display of this structure is called a subway map plot. It is created with the same strategy used for the flat tree plot. 
+</p><p>
+Although these visualizations capture trajectories and branching points, they are not informative on the density and composition of cell types along pseudotime, a common challenge when modeling large datasets. To solve this problem, we develop a trajectory visualization method called the stream plot. This compact representation summarizes cellular developmental trajectories, user-defined annotations, branching points, cell density, and gene expression patterns.
+</p><p>
+Starting from the subway map plot, for each cell type (if cell labels are provided), using a sliding window approach, we first calculate the number of cells in each window along a developmental branch. To provide smooth transitions around the branching nodes, in those regions the sliding window spans both parent branch and children branches and then proceeds independently on each branch. Then, the numbers of cells in all sliding windows are normalized based on the length of the longest path in the tree. The vertical layout of different branches is optimized by taking into consideration normalized numbers of cells to make sure there will not be overlap between branches. Based on the normalized sliding window values, we first use linear interpolation to construct a set of supporting points. Then the Savitzky-Golay filter (a smoothing filter able to preserve well the signal and avoid oscillations) is applied to create smooth curves based on the set of supporting points. Finally, the obtained curves polygons (one for each cell type) are assembled to form the stream plot. On the stream plot, the length of each branch is the same as in the subway map plot and represents pseudotime, whereas the width is proportional to the number of cells at a given position.
+
 </p>
 
 <h2>References</h2>
 <p>H Chen, L Albergante, JY Hsu, CA Lareau, GL Bosco, J Guan, S Zhou, AN Gorban, DE Bauer, MJ Aryee, DM Langenau, A Zinovyev, JD Buenrostro, GC Yuan, L Pinello&nbsp;<a href="https://www.nature.com/articles/s41467-019-09670-4">Single-cell trajectories reconstruction, exploration and mapping of omics data with STREAM. </a> Nature Communications, volume 10, Article number: 1903 (2019)</p>
 <p>Nestorowa, S. et al.<a href="https://www.ncbi.nlm.nih.gov/pubmed/27365425"> A single-cell resolution map of mouse hematopoietic stem and progenitor cell differentiation</a>. Blood 128, e20-31 (2016).</p>
 <p>Pinello Lab &nbsp; <a href="https://github.com/pinellolab/STREAM">STREAM Github Repository</a></p>
-<p><b>ADD GPNB NOTEBOOK HERE WHEN READY</b></p>
 
 <h2>Input Files</h2>
 

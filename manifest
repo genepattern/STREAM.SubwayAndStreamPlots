@@ -9,7 +9,7 @@ categories=SingleCell
 commandLine=python /stream/visualization_command_line.py -m <data.file> -of <output.filename> <figure.width> <figure.height> <figure.legend.num.columns> <root> <preference> <subway.factor> <color.by>  <factor.num.win> <factor.min.win> <factor.width> <flag.log.view> <factor.zoom.in> <create.cell.plots> <create.gene.plots> <genes> <percentile.dist>
 
 cpuType=any
-description=
+description=Generates flat tree subway and stream plots that intuitively represents trajectories as linear segments on a 2D plane
 fileFormat=pkl
 language=any
 minGenePatternVersion=3.9.13
