@@ -84,18 +84,16 @@ def main():
                fig_legend_ncol=args.fig_legend_ncol,tick_fontsize=20,label_fontsize=25)
 
     if (args.flag_genes != None):
-        genes = args.genes.split(',')
+        genes = [x.strip() for x in args.genes.split(',')]
+
         st.subwaymap_plot_gene(adata,root=args.root,genes=genes,
                        preference=preference,percentile_dist=args.percentile_dist,factor=args.subway_factor,
                        save_fig=True,fig_path="./",fig_format='png',fig_size=(args.fig_width, args.fig_height))
-        #              , fig_name=(args.output_filename_prefix + '_gene_subway_plot.png')) 
+
 
         st.stream_plot_gene(adata,root=args.root,genes=genes,
                     preference=preference,factor_min_win=args.factor_min_win,factor_num_win=args.factor_num_win,factor_width=args.factor_width,
                     save_fig=True,fig_path="./",fig_format='png',fig_size=(args.fig_width, args.fig_height),tick_fontsize=20,label_fontsize=25)
-        #           , fig_name=(args.output_filename_prefix + '_gene_stream_plot.png'))
-
-
 
 
     st.write(adata,file_name=(args.output_filename_prefix + '_stream_result.pkl'),file_path='./',file_format='pkl') 
