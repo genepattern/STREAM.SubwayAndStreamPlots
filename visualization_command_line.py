@@ -70,7 +70,7 @@ def main():
 
     adata = st.read(file_name=args.input_filename, file_format='pkl', experiment='rna-seq', workdir=workdir)
     preference = args.preference.split(',')
-    if (args.flag_cells != None):
+    if (args.flag_cells ):
         st.plot_flat_tree(adata,save_fig=True, fig_path="./", fig_name=(args.output_filename_prefix + '_flat_tree.png'), fig_size=(args.fig_width, args.fig_height),fig_legend_ncol=args.fig_legend_ncol)
 
         st.subwaymap_plot(adata,root=args.root,percentile_dist=args.percentile_dist, 
@@ -83,7 +83,7 @@ def main():
                save_fig=True,fig_path="./",fig_name=(args.output_filename_prefix + '_cell_stream_plot.png'),fig_size=(args.fig_width, args.fig_height),fig_legend=True,
                fig_legend_ncol=args.fig_legend_ncol,tick_fontsize=20,label_fontsize=25)
 
-    if (args.flag_genes != None):
+    if (args.flag_genes ):
         genes = [x.strip() for x in args.genes.split(',')]
 
         st.subwaymap_plot_gene(adata,root=args.root,genes=genes,
