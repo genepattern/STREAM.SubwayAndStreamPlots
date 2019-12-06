@@ -234,7 +234,7 @@ p16_value=\=No Cell Plots;-flag_cells \=Create Cell Plots
 
 p17_MODE=
 p17_TYPE=TEXT
-p17_default_value=-flag_genes 
+p17_default_value=
 p17_description=
 p17_fileFormat=
 p17_flag=
@@ -242,7 +242,7 @@ p17_name=create.gene.plots
 p17_numValues=0..1
 p17_optional=on
 p17_prefix=
-p17_prefix_when_specified=     
+p17_prefix_when_specified=  
 p17_type=java.lang.String
 p17_value=\=No gene plots;-flag_genes \=Create Gene Plots
 

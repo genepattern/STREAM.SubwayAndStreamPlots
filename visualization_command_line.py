@@ -84,14 +84,15 @@ def main():
                fig_legend_ncol=args.fig_legend_ncol,tick_fontsize=20,label_fontsize=25)
 
     if (args.flag_genes ):
-        genes = [x.strip() for x in args.genes.split(',')]
+        if (args.genes is not None):  
+            genes = [x.strip() for x in args.genes.split(',')]
 
-        st.subwaymap_plot_gene(adata,root=args.root,genes=genes,
+            st.subwaymap_plot_gene(adata,root=args.root,genes=genes,
                        preference=preference,percentile_dist=args.percentile_dist,factor=args.subway_factor,
                        save_fig=True,fig_path="./",fig_format='png',fig_size=(args.fig_width, args.fig_height))
 
 
-        st.stream_plot_gene(adata,root=args.root,genes=genes,
+            st.stream_plot_gene(adata,root=args.root,genes=genes,
                     preference=preference,factor_min_win=args.factor_min_win,factor_num_win=args.factor_num_win,factor_width=args.factor_width,
                     save_fig=True,fig_path="./",fig_format='png',fig_size=(args.fig_width, args.fig_height),tick_fontsize=20,label_fontsize=25)
 
